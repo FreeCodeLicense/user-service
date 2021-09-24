@@ -2,10 +2,13 @@
 node_modules
 /dist
 
+/login-form-v1
+login-form-v1.zip
 
 # local env files
 .env.local
 .env.*.local
+.env
 
 # Log files
 npm-debug.log*
