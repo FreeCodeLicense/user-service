@@ -112,13 +112,12 @@
 
 <script>
 export default {
-  name: "menu"
 }
 </script>
 
 <style scoped>
   .food-name{
-    font-name: 14px;
+    font-size: 14px;
   }
   .food-text{
     font-size: 14px;

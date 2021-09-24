@@ -12,6 +12,7 @@ export default createRouter({
         {
             component:Home,
             path:"/"
+            
         },
         {
             component:Login,
@@ -23,7 +24,18 @@ export default createRouter({
         },
         {
             component:Menu,
-            path:"/menu"
+            path:"/menu",
+            beforeEnter(to, from , next){
+                let cookies=document.cookie.split(' ').map(elem=>{ let values=elem.split('='); return { [values[0]] : values[1] }  }) 
+                let token=cookies.find(elem=>{ return elem.token })
+
+                if(typeof token.token == undefined || token.token===''){
+                    next("/login")
+                } else {
+                    next()
+                }
+    
+            }
         }
     ]
 })

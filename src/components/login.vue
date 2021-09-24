@@ -32,12 +32,10 @@ export default {
   },
   methods:{
     submitLogin(){
-      console.log(this.$store.getters['error/getError'])
       axios.post(`/api/login`,{
         email: this.email,
         password: this.password,
       }).then(({data})=>{
-        console.log(data)
         if(data.status=="error"){
           this.$store.dispatch('error/setErrorAction',data.message)
           this.$store.dispatch('error/setMayShowAction',true)
@@ -47,7 +45,7 @@ export default {
          this.$store.dispatch('error/setErrorAction',"Auth successfully complited!")
          this.$store.dispatch('error/setMayShowAction',true)
          document.cookie=`token=${data.token}`
-         axios.defaults.headers.common['x-access-token'] = data.token // for all requests
+         this.$router.push("/menu")
         }
         
       })
