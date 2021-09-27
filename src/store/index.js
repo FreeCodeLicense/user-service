@@ -1,5 +1,6 @@
 import { createStore } from "vuex"
 import error from "./modules/error"
+import foods from "./modules/foods"
 
 export default new createStore({
     state:{
@@ -9,6 +10,9 @@ export default new createStore({
     getters:{
         getUser(state){
             return state.user
+        },
+        getToken(state){
+            return state.token
         }
     },
     mutations:{
@@ -29,7 +33,8 @@ export default new createStore({
         
     },
     modules:{
-        error: error
+        error: error,
+        foods: foods
     }
 
 })

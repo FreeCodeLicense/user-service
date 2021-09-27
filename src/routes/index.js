@@ -5,6 +5,8 @@ import Home from "../components/home"
 import Login from "../components/login"
 import Menu from "../components/menu"
 import Register from "@/components/register";
+// import Admin from "@/components/admin";
+
 
 export default createRouter({
     history:createWebHistory(),
@@ -29,13 +31,20 @@ export default createRouter({
                 let cookies=document.cookie.split(' ').map(elem=>{ let values=elem.split('='); return { [values[0]] : values[1] }  }) 
                 let token=cookies.find(elem=>{ return elem.token })
 
-                if(typeof token.token == undefined || token.token===''){
+                if(!token){
                     next("/login")
-                } else {
-                    next()
-                }
+                } else if(token.token ===""){
+                    next("/login")
+                } else next()
     
             }
-        }
+        },
+        // {
+        //     path: "/admin",
+        //     component: Admin,
+        //     children:[
+
+        //     ]
+        // }
     ]
 })
