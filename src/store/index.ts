@@ -2,13 +2,13 @@ import { createStore } from "vuex"
 import error from "./modules/error"
 import foods from "./modules/foods"
 
-export default new createStore({
+export default createStore({
     state:{
         user:null,
-        token: ""
+        token: "" 
     },
     getters:{
-        getUser(state){
+        getUser(state) : any {
             return state.user
         },
         getToken(state){

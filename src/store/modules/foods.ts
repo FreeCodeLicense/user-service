@@ -1,3 +1,5 @@
+import { Module } from "vuex"
+
 export default {
     namespaced: true,
     state: {
@@ -30,13 +32,13 @@ export default {
         ]
     },
     getters:{
-        getFoods(state){
+        getFoods(state: any){
             return state.foods
         }
     },
     mutations:{
-        setFoods(state, payload){
-            payload.forEach(elem=>{
+        setFoods(state : any, payload){
+            payload.forEach((elem: any)=>{
                 state.foods.push(elem)
             })
         }
@@ -46,4 +48,6 @@ export default {
             commit('setFoods',payload)
         }
     }
-}
+
+} as Module<any, any>
+

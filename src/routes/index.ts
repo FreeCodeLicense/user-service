@@ -1,10 +1,10 @@
 
-import { createRouter,createWebHistory } from "vue-router"
+import { createRouter,createWebHistory, RouteRecordRaw } from "vue-router"
 
-import Home from "../components/home"
-import Login from "../components/login"
-import Menu from "../components/menu"
-import Register from "@/components/register";
+import Home from "@/components/home.vue"
+import Login from "@/components/login.vue"
+import Menu from "@/components/menu.vue"
+import Register from "@/components/register.vue";
 // import Admin from "@/components/admin";
 
 
@@ -28,8 +28,8 @@ export default createRouter({
             component:Menu,
             path:"/menu",
             beforeEnter(to, from , next){
-                let cookies=document.cookie.split(' ').map(elem=>{ let values=elem.split('='); return { [values[0]] : values[1] }  }) 
-                let token=cookies.find(elem=>{ return elem.token })
+                const cookies=document.cookie.split(' ').map(elem=>{ const values=elem.split('='); return { [values[0]] : values[1] }  }) 
+                const token=cookies.find(elem=>{ return elem.token })
 
                 if(!token){
                     next("/login")
@@ -46,5 +46,5 @@ export default createRouter({
 
         //     ]
         // }
-    ]
+    ] as Array<RouteRecordRaw>
 })

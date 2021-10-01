@@ -33,43 +33,33 @@
   </div>
 </template>
 
-<script>
-import axios from 'axios'
+<script lang="ts" >
+// import axios from 'axios'
 // import { onMounted } from '@vue/runtime-core'
 
 import errorComponent from "./components/showerror.vue"
 // import axios from 'axios'
+import { defineComponent } from "vue"
 
-export default {
+export default defineComponent({
   name: 'App',
-  created(){
-    let cookies=document.cookie.split(' ').map(elem=>{ let values=elem.split('='); return { [values[0]] : values[1] }  }) 
-    let token=cookies.find(elem=>{ return elem.token })
-    if(!token){
-      return
-    }
-    if(token.token ===""){
-      return
-    }
-    axios.get(`/api/restore?token=${token.token}`).then(({data})=>{
-      if(data.status==="ok"){
-        this.$store.dispatch("setTokenAction",token.token)
-        this.$store.dispatch("setUserAction",data.user)
-      } else {
-        this.$store.dispatch('error/setErrorAction', data.message)
-        this.$store.dispatch('error/setMayShowAction',true)
-      }
-    })
-
-    axios.get(`/api/menu?token=${token.token}`).then(({data})=>{
-      if(data.status==="ok"){
-        this.$store.dispatch("foods/setFoodAction",data.foods)
-      } else {
-        this.$store.dispatch('error/setErrorAction', data.message)
-        this.$store.dispatch('error/setMayShowAction',true)
-      }
-    })
-  },
+  // created(){
+  //   let cookies=document.cookie.split(' ').map(elem=>{ let values=elem.split('='); return { [values[0]] : values[1] }  }) 
+  //   let token : any = cookies.find(elem=>{ return elem.token })
+  //   if(token.token ==="" || typeof token.token==undefined){
+  //     return
+  //   }
+  //   axios.get(`/api/restore?token=${token.token}`).then(({data})=>{
+  //     console.log(data)
+  //     if(data.status==="ok"){
+  //       this.$store.dispatch("setTokenAction",token.token)
+  //       this.$store.dispatch("setUserAction",data.user)
+  //     } else {
+  //       this.$store.dispatch('error/setErrorAction', data.message)
+  //       this.$store.dispatch('error/setMayShowAction',true)
+  //     }
+  //   })
+  // },
   methods:{
     logout(){
       document.cookie="token=''"
@@ -89,7 +79,7 @@ export default {
       return this.$store.getters.getUser
     }
   }
-}
+})
 </script>
 
 <style>

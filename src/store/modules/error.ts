@@ -1,22 +1,24 @@
-export default{
+import { Module } from "vuex"
+
+export default {
     namespaced: true,
     state:{
         error: "Not error found",
         mayShow: true
     },
     getters:{
-        getError(state){
+        getError(state: any){
             return state.error
         },
-        getMayShow(state){
+        getMayShow(state: any){
             return state.mayShow
         }
     },
     mutations:{
-        setError(state,message){
+        setError(state: any,message){
             state.error=message
         },
-        setMayShow(state,message){
+        setMayShow(state: any,message){
             state.mayShow=message
         }
     },
@@ -28,4 +30,4 @@ export default{
             commit("setMayShow",message)
         }
     }
-}
+} as Module<any, any>
